@@ -25,5 +25,4 @@ public abstract class PackageSwitchAlgorithm extends AbstractAlgorithm<PackageSw
     public PackageSwitchData getInputData() {
         return (PackageSwitchData) super.getInputData();
     }
-
 }
