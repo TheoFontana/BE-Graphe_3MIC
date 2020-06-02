@@ -57,13 +57,20 @@ public abstract class ShortestPathAlgorithm extends AbstractAlgorithm<ShortestPa
     }
 
     /**
+	 * Notify all observers that the destination has been reached.
+	 * 
+	 * @param node Destination.
+	 */
+	public void notifyDestinationReached(Node node) {
+	    for (ShortestPathObserver obs: getObservers()) {
+	        obs.notifyDestinationReached(node);
+	    }
+	}
+
+	/**
      * Notify all observers that the destination has been reached.
      * 
      * @param node Destination.
      */
-    public void notifyDestinationReached(Node node) {
-        for (ShortestPathObserver obs: getObservers()) {
-            obs.notifyDestinationReached(node);
-        }
-    }
+
 }

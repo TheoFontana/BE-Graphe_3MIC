@@ -38,7 +38,7 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
         notifyOriginProcessed(début);
 
         //Boucle de traitement 
-        while(!heap.isEmpty()) 
+        while(!heap.isEmpty() && labels[data.getDestination().getId()].isCheck() == false) 
         { 
         	Label label = heap.deleteMin(); // label en cours de traitement
         	Node noeud = label.getNode(); // noeud en cours de traitement 
@@ -46,10 +46,10 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
         	
 			for (Arc arc : noeud.getSuccessors()) 
 			{		
-		        
 		        Node noeud_dest = arc.getDestination(); 
 		        Label label_dest = labels[noeud_dest.getId()]; 
-		        double cost = data.getCost(arc) + label.getCost();
+		        double cost = data.getCost(arc) + label.getCost();  
+		        //System.out.println("le cout du label vaut : " +  label.getCost());
 		        
 		        if (!label_dest.isCheck() && label_dest.getCost()>cost) // Le noeud n'a pas été visité
 		        {
@@ -96,7 +96,7 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
                 arc = label_fin.getPere();
             }
             
-            // Reverse the path...
+            // On retourne le chemin 
             Collections.reverse(arcs);
            
             Path path= new Path(graph, arcs);
@@ -109,21 +109,19 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
             if(path.isValid()) 
             {
             	solution = new ShortestPathSolution(data, Status.OPTIMAL, new Path(graph, arcs));
-            	System.out.println("Chemin valide");
+            	System.out.println("Le chemin est valide");
             }
             else 
             {
             	solution = null;
-            	System.out.println("Chemin non valide");
+            	System.out.println("Le chemin est non valide");
             }
             
             
         }
             
         return solution;
-        
-        
-        
+           
     }
 
 }

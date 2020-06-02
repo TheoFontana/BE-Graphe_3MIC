@@ -35,17 +35,20 @@ public class Label implements Comparable<Label> {
 		return this.vu;
 	}
 	
+	public void setCost(double c) {
+		this.cost = c;
+	}
 	
 	public double getCost() {
 		return this.cost;
 	}
 	
-	public void setCost(double c) {
-		this.cost = c;
+	public double getTotalCost() {
+		return this.cost;
 	}
 	
 	public int compareTo(Label other) {
-        return Double.compare(getCost(), other.getCost());
+        return Double.compare( getTotalCost(),other.getTotalCost() );
     }
 	
 	public Node getNode() {
